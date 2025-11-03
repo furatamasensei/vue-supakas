@@ -29,6 +29,12 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 npm install
 ```
 
+## Copy and Rename Env File
+
+```sh
+cp .env.example .env
+```
+
 ### Compile and Hot-Reload for Development
 
 ```sh
