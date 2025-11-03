@@ -25,8 +25,36 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 
 ## Project Setup
 
+This repository depends on local `supabase-js` and `supabase/auth` package. Make sure to follow these steps in sequence.
+
+## Setup local supabase-js package
+
 ```sh
+git clone https://github.com/furatamasensei/supabase-js.git
+cd supabase-js
 npm install
+npx nx run-many --target=build --all
+```
+
+## Spawn a new terminal and setup local supabase-auth package
+
+```sh
+git clone https://github.com/furatamasensei/auth.git
+cd auth
+git checkout feature/siwk
+cp example.docker.env .env.docker
+echo "GOTRUE_URI_ALLOW_LIST=http://localhost:5173" >> .env.docker
+echo "GOTRUE_CORS_ALLOWED_HEADERS=*" >> .env.docker
+echo "GOTRUE_EXTERNAL_WEB3_KASPA_ENABLED=true" >> .env.docker
+echo "GOTRUE_EXTERNAL_WEB3_KASPA_MAXIMUM_VALIDITY_DURATION=10m" >> .env.docker
+make build
+make dev
+```
+
+## Spawn a new terminal and setup vue-supakas
+
+```sh
+pnpm install
 ```
 
 ## Copy and Rename Env File
@@ -38,11 +66,11 @@ cp .env.example .env
 ### Compile and Hot-Reload for Development
 
 ```sh
-npm run dev
+pnpm run dev
 ```
 
 ### Type-Check, Compile and Minify for Production
 
 ```sh
-npm run build
+pnpm run build
 ```
