@@ -15,12 +15,6 @@ async function signInWithKaspa() {
 
   const { error: signInError } = await auth.signInWithWeb3({
     chain: 'kaspa',
-    address: 'kaspa:qz8ex99c82ghannv4p2cm3wtcw3yaezz63xkrsfwvmqq2l35knrv748u5e9ee',
-    options: {
-      signInWithKaspa: {
-        chainId: 'kaspa_mainnet',
-      },
-    },
   })
 
   if (signInError) {
